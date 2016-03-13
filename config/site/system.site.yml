@@ -1,6 +1,6 @@
 uuid: c1de8acf-9884-49ea-b359-8969e5351900
-name: Site-Install
-mail: admin@example.com
+name: 'Integration Demo'
+mail: dave@vasilevsky.ca
 slogan: ''
 page:
   403: ''
