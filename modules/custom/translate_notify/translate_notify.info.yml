@@ -1,0 +1,4 @@
+type: module
+name: Translate Notify
+description: 'Notifies site admin when nodes are translated.'
+core: '8.x'

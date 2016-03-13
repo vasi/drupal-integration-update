@@ -1,0 +1,29 @@
+<?php
+
+/**
+ * @file
+ * Module code for translate_notify.
+ */
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_node_translation_create().
+ *
+ * Send an email when a translation is started.
+ */
+function translate_notify_node_translation_create(NodeInterface $node) {
+  $message = t('Node "@title" at path @path is being translated', [
+    '@title' => $node->label(),
+    '@path' => $node->toUrl()->toString(),
+  ]);
+  $subject = t('Node translation started');
+  $to = \Drupal::config('system.site')->get('mail');
+  \Drupal::service('plugin.manager.mail')->mail(
+    'system',
+    'translate_notify',
+    $to,
+    \Drupal::languageManager()->getDefaultLanguage()->getId(),
+    ['context' => ['subject' => $subject, 'message' => $message]]
+  );
+}
